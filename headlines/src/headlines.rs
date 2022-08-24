@@ -17,16 +17,10 @@ pub struct Headlines {
     pub news_rx: Option<Receiver<NewsCardData>>
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct HeadlinesConfig {
   pub dark_mode: bool,
   pub api_key: String
-}
-
-impl Default for HeadlinesConfig {
-    fn default() -> Self {
-        Self { dark_mode: Default::default(), api_key: Default::default() }
-    }
 }
 
 impl Headlines {
@@ -162,7 +156,7 @@ fn fetch_news(app: &mut Headlines) {
               let news = NewsCardData {
                   title: a.title().to_string(),
                   url: a.url().to_string(),
-                  desc: a.desc().map(|s| s.to_string()).unwrap_or("...".to_string())
+                  desc: a.desc().map(|s| s.to_string()).unwrap_or_else(|| "...".to_string())
               };
               if let Err(e) = news_tx.send(news) {
                 tracing::error!("Error sending news data: {}", e);

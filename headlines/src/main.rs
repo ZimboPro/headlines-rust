@@ -59,8 +59,7 @@ fn render_header(ui: & mut Ui) {
 
 fn main() {
     tracing_subscriber::fmt::init();
-    let mut options = eframe::NativeOptions::default();
-    options.initial_window_size = Some(Vec2::new(540., 960.));
+    let options = eframe::NativeOptions { initial_window_size: Some(Vec2::new(540., 960.)), ..Default::default() };
     run_native(
         "Headlines",
         options,
