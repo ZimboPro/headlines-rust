@@ -1,13 +1,13 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use eframe::{egui::{CentralPanel, ScrollArea, Ui, Separator, TopBottomPanel, Context, Label, RichText, Hyperlink}, run_native, epaint::Vec2, App};
+use eframe::{egui::{CentralPanel, ScrollArea, Ui, Separator, TopBottomPanel, Context, RichText, Hyperlink}, run_native, epaint::Vec2, App};
 use headlines::{Headlines, PADDING};
 mod headlines;
 
 
 impl App for Headlines {
     
-    fn update(&mut self, ctx: &eframe::egui::Context, frame: &mut eframe::Frame) {
+    fn update(&mut self, ctx: &eframe::egui::Context, _frame: &mut eframe::Frame) {
         self.render_top_panel(ctx);
         CentralPanel::default().show(ctx, |ui| {
             render_header(ui);

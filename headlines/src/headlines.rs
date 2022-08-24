@@ -1,4 +1,4 @@
-use eframe::{run_native, App, egui::{CentralPanel, ScrollArea, FontDefinitions, Context, FontData, TextStyle, Label, RichText, Ui, Layout, Hyperlink, Separator, TopBottomPanel, menu, Button}, epaint::{Vec2, FontId, FontFamily, Color32}, CreationContext, emath::Align};
+use eframe::{egui::{FontDefinitions, Context, FontData, TextStyle, RichText, Layout, Hyperlink, Separator, TopBottomPanel, menu}, epaint::{FontId, FontFamily, Color32}, CreationContext, emath::Align};
 
 pub const PADDING: f32 = 5.0;
 const WHITE: Color32 = Color32::from_rgb(255, 255, 255);
@@ -22,7 +22,7 @@ impl Headlines {
     pub fn render_news_cards(&self, ui: &mut eframe::egui::Ui) {
         for a in &self.articles {
             ui.add_space(PADDING);
-            let title = format!("-> {}", a.title);
+            let title = format!("▶ {}", a.title);
             ui.colored_label(WHITE, title);
             ui.add_space(PADDING);
             let label = RichText::new(&a.desc).text_style(TextStyle::Button);
@@ -46,12 +46,12 @@ impl Headlines {
           ui.add_space(10.);
           menu::bar(ui, |ui| {
             ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
-              ui.label(RichText::new("Logo").text_style(TextStyle::Heading));
+              ui.label(RichText::new("📓").text_style(TextStyle::Heading));
             });
             ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-              let close_btn = ui.button(RichText::new("X").text_style(TextStyle::Body));
-              let refresh_btn = ui.button(RichText::new("R").text_style(TextStyle::Body));
-              let theme_btn = ui.button(RichText::new("T").text_style(TextStyle::Body));
+              let close_btn = ui.button(RichText::new("❌").text_style(TextStyle::Body));
+              let refresh_btn = ui.button(RichText::new("🔄").text_style(TextStyle::Body));
+              let theme_btn = ui.button(RichText::new("🌙").text_style(TextStyle::Body));
               
             });
           });

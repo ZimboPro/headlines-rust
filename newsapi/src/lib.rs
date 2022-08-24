@@ -120,8 +120,8 @@ impl NewsAPI {
         let req = ureq::get(&url).set("Authorization", &self.api_key);
         let response: NewsAPIResponse = req.call()?.into_json()?;
         match response.status.as_str() {
-            "ok" => return Ok(response),
-            _ => return Err(map_response_err(response.code))
+            "ok" => Ok(response),
+            _ => Err(map_response_err(response.code))
         }
     }
 
