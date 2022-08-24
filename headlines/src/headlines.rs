@@ -1,7 +1,7 @@
 use std::{thread, sync::mpsc::{channel, Receiver}};
 
-use eframe::{egui::{FontDefinitions, Context, FontData, TextStyle, RichText, Layout, Hyperlink, Separator, TopBottomPanel, menu, Sense, Window, Key}, epaint::{FontId, FontFamily, Color32}, CreationContext, emath::Align};
-use newsapi::{NewsAPI, NewsApiError};
+use eframe::{egui::{FontDefinitions, Context, FontData, TextStyle, RichText, Layout, Hyperlink, Separator, TopBottomPanel, menu, Window, Key}, epaint::{FontId, FontFamily, Color32}, CreationContext, emath::Align};
+use newsapi::{NewsAPI};
 use serde::{Serialize, Deserialize};
 
 pub const PADDING: f32 = 5.0;
@@ -37,7 +37,7 @@ impl Headlines {
         let mut temp = Self {
           api_key_init: !config.api_key.is_empty(),
           articles: Vec::new(),
-          config: config,
+          config,
           news_rx: None
         };
         if temp.api_key_init {
